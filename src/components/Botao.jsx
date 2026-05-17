@@ -1,7 +1,7 @@
 function Botao(props) {
-    let classe = props.cls;
+    const {cls, btn} = props;
     return (
-        <div className={classe}>{props.btn}</div>
+        <div className={cls}>{btn}</div>
     )
 }
 

@@ -1,41 +1,51 @@
 import { useState } from "react";
 import Botao from "./components/Botao.jsx";
+import Input from "./components/Input.jsx";
 
 function App() {
-  const style = {
+  const stl = {
     main:`
       flex bg-blue-100 w-screen h-screen flex-col pt-8 items-center
     `,
     h1:`
       text-3xl font-bold text-center mb-12
     `,
+    borda: `
+      border border-black
+    `,
     
     
-    test:(<o className="border-red-50" />)
+    test:(<o className="" />)
   }
 
 
   return (
-    <div className={style.main}>
-      <h1 className={style.h1}>Calculadora</h1>
+    <div className={stl.main}>
+      <h1 className={stl.h1}>Calculadora</h1>
 
-      <div className="grid w-1/3 h-3/6 grid-cols-4 grid-rows-5 gap-1">
-        <input type="text" className="border border-black col-span-4"/>
-        <Botao btn="0" cls="border border-black col-span-3 row-start-5"/>
-        <Botao btn="1" cls="border border-black "/>
-        <Botao btn="2" cls="border border-black "/>
-        <Botao btn="3" cls="border border-black "/>
-        <Botao btn="4" cls="border border-black col-start-1 row-start-3"/>
-        <Botao btn="5" cls="border border-black col-start-2 row-start-3"/>
-        <Botao btn="6" cls="border border-black col-start-3 row-start-3"/>
-        <Botao btn="7" cls="border border-black col-start-1 row-start-4"/>
-        <Botao btn="8" cls="border border-black col-start-2 row-start-4"/>
-        <Botao btn="9" cls="border border-black col-start-3 row-start-4"/>
+      <div className="grid w-1/3 h-3/6 grid-cols-4 grid-rows-6 gap-1 ">
+        <Input tp="text" ph="Digite um número" cls="border border-black col-span-4"/>
+        <Botao btn="1" cls={`${stl.borda}`}/>
+        <Botao btn="2" cls={`${stl.borda}`}/>
+        <Botao btn="3" cls={`${stl.borda}`}/>
+        <Botao btn="4" cls={`${stl.borda} col-start-1 row-start-4`}/>
+        <Botao btn="5" cls={`${stl.borda} col-start-2 row-start-4`}/>
+        <Botao btn="6" cls={`${stl.borda} col-start-3 row-start-4`}/>
+        <Botao btn="7" cls={`${stl.borda} col-start-1 row-start-5`}/>
+        <Botao btn="8" cls={`${stl.borda} col-start-2 row-start-5`}/>
+        <Botao btn="9" cls={`${stl.borda} col-start-3 row-start-5`}/>
+        <Botao btn="0" cls={`${stl.borda} col-start-2 row-start-6`}/>
 
-        <Botao btn="+" cls="border border-black "/>
-        <Botao btn="-" cls="border border-black "/>
-        <Botao btn="/" cls="border border-black "/>
-        <Botao btn="x" cls="border border-black "/>
+        <Botao btn="+" cls={`${stl.borda} col-start-2 row-start-2`}/>
+        <Botao btn="-" cls={`${stl.borda} col-start-3 row-start-2`}/>
+        <Botao btn="/" cls={`${stl.borda} col-start-4 row-start-3`}/>
+        <Botao btn="x" cls={`${stl.borda} col-start-4 row-start-4`}/>
+        <Botao btn="." cls={`${stl.borda} col-start-1 row-start-6`}/>
+        <Botao btn="%" cls={`${stl.borda} col-start-3 row-start-6`}/>
+
+        <Botao btn="Del" cls={`${stl.borda} col-start-4 row-start-2`}/>
+        <Botao btn="C"   cls={`${stl.borda} col-start-1 row-start-2`}/>
+        <Botao btn="="   cls={`${stl.borda} col-start-4 row-start-5 row-end-7`}/>
       </div>
     </div>
   )

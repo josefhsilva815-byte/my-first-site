@@ -1,6 +1,6 @@
-import { useState } from "react";
 import Botao from "./components/Botao.jsx";
 import Input from "./components/Input.jsx";
+import Output from "./components/Output.jsx";
 
 function App() {
   const stl = {
@@ -15,7 +15,7 @@ function App() {
     `,
     
     
-    test:(<o className="" />)
+    testStyle:(<o className="" />)
   }
 
 
@@ -25,6 +25,7 @@ function App() {
 
       <div className="grid w-1/3 h-3/6 grid-cols-4 grid-rows-6 gap-1 ">
         <Input tp="text" ph="Digite um número" cls="border border-black col-span-4"/>
+        <Output tp="text" ph="Resultado" cls="border border-black bg-transparent col-span-4"/>
         <Botao btn="1" cls={`${stl.borda}`}/>
         <Botao btn="2" cls={`${stl.borda}`}/>
         <Botao btn="3" cls={`${stl.borda}`}/>

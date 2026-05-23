@@ -1,7 +1,11 @@
-function Botao(props) {
-    const {cls, btn} = props;
+function Botao({classe, ctn, click}) {
     return (
-        <div className={cls}>{btn}</div>
+        <button 
+        onClick={click} 
+        className={classe}
+        >
+            {ctn}
+        </button>
     )
 }
 

@@ -1,7 +1,8 @@
-function Output(props) {
-    const {cls, tp, ph} = props;
+function Output({classe, out}) {
     return (
-        <input className={cls} type={tp} placeholder={ph}/>
+        <div className={classe}>
+            {out}
+        </div>
     )
 }
 

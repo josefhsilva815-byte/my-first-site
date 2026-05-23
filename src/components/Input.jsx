@@ -1,7 +1,11 @@
-function Input(props) {
-    const {cls, tp, ph} = props;
+function Input({classe, type, placeholder, input}) {
     return (
-        <input className={cls} type={tp} placeholder={ph}/>
+        <input 
+        onInput={input} 
+        className={classe} 
+        type={type} 
+        placeholder={placeholder}
+        />
     )
 }
 

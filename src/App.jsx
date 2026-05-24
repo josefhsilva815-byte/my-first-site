@@ -21,16 +21,30 @@ function App() {
     
     testStyle:(<o 
       className='
-        text-opacity-100
+        text-wrap
       '
     />)
   }
 
-  const [value, setValue] = useState("");
+  const [displayIn, setDisplayIn] = useState("");
+  const [displayOut, setDisplayOut] = useState("");
 
   function handclick(input) {
-    const {value} = input.target;
-    setValue(value);
+    const {value, textContent} = input.target;
+    setDisplayIn((preValue) => {
+      if(value) return value
+      if(textContent) return preValue ? preValue + textContent : textContent
+    });
+    console.log(displayIn)
+  }
+
+  function limpar() { // Limpar todo conteúdo da tela da calculdora
+    setDisplayIn("")
+  }
+  function apagar() { // Apagar o último caracter
+    alert(displayIn.length)
+  }
+  function calcular() { // Resolve a expressão aritmética digitada
   }
 
   return (
@@ -38,10 +52,15 @@ function App() {
       <h1 className={stl.h1}>Calculadora</h1>
 
       <div className="grid w-1/3 h-3/6 grid-cols-4 grid-rows-6 gap-1 ">
-        <Input input={(e) => handclick(e)} type="text" placeholder="Digite" classe={`
+        <Input 
+        value={displayIn}
+        input={(e) => handclick(e)} 
+        type="text" 
+        placeholder="Digite" 
+        classe={`
           rounded-lg
-          flex
-          h-full
+          flex 
+          h-full 
           text-left 
           p-2 
           col-start-1 
@@ -49,8 +68,11 @@ function App() {
           row-start-1 
           outline-none 
           ${stl.borda}
-        `}/>
-        <Output out={value} classe={`
+        `}
+        />
+        <Output 
+        out={displayOut} 
+        classe={`
           opacity-40
           self-end 
           pr-2 
@@ -61,29 +83,30 @@ function App() {
           col-start-1 
           col-end-5 
           row-start-1
-        `}/>
+        `}
+        />
 
-        <Botao ctn="1" classe={`${stl.botao} ${stl.borda}`}/>
-        <Botao ctn="2" classe={`${stl.botao} ${stl.borda}`}/>
-        <Botao ctn="3" classe={`${stl.botao} ${stl.borda}`}/>
-        <Botao ctn="4" classe={`${stl.botao} ${stl.borda} col-start-1 row-start-4`}/>
-        <Botao ctn="5" classe={`${stl.botao} ${stl.borda} col-start-2 row-start-4`}/>
-        <Botao ctn="6" classe={`${stl.botao} ${stl.borda} col-start-3 row-start-4`}/>
-        <Botao ctn="7" classe={`${stl.botao} ${stl.borda} col-start-1 row-start-5`}/>
-        <Botao ctn="8" classe={`${stl.botao} ${stl.borda} col-start-2 row-start-5`}/>
-        <Botao ctn="9" classe={`${stl.botao} ${stl.borda} col-start-3 row-start-5`}/>
-        <Botao ctn="0" classe={`${stl.botao} ${stl.borda} col-start-2 row-start-6`}/>
+        <Botao click={(e) => handclick(e)} ctn="1" classe={`${stl.botao} ${stl.borda}`}/>
+        <Botao click={(e) => handclick(e)} ctn="2" classe={`${stl.botao} ${stl.borda}`}/>
+        <Botao click={(e) => handclick(e)} ctn="3" classe={`${stl.botao} ${stl.borda}`}/>
+        <Botao click={(e) => handclick(e)} ctn="4" classe={`${stl.botao} ${stl.borda} col-start-1 row-start-4`}/>
+        <Botao click={(e) => handclick(e)} ctn="5" classe={`${stl.botao} ${stl.borda} col-start-2 row-start-4`}/>
+        <Botao click={(e) => handclick(e)} ctn="6" classe={`${stl.botao} ${stl.borda} col-start-3 row-start-4`}/>
+        <Botao click={(e) => handclick(e)} ctn="7" classe={`${stl.botao} ${stl.borda} col-start-1 row-start-5`}/>
+        <Botao click={(e) => handclick(e)} ctn="8" classe={`${stl.botao} ${stl.borda} col-start-2 row-start-5`}/>
+        <Botao click={(e) => handclick(e)} ctn="9" classe={`${stl.botao} ${stl.borda} col-start-3 row-start-5`}/>
+        <Botao click={(e) => handclick(e)} ctn="0" classe={`${stl.botao} ${stl.borda} col-start-2 row-start-6`}/>
 
-        <Botao ctn="+" classe={`${stl.botao} ${stl.borda} col-start-2 row-start-2`}/>
-        <Botao ctn="-" classe={`${stl.botao} ${stl.borda} col-start-3 row-start-2`}/>
-        <Botao ctn="/" classe={`${stl.botao} ${stl.borda} col-start-4 row-start-3`}/>
-        <Botao ctn="x" classe={`${stl.botao} ${stl.borda} col-start-4 row-start-4`}/>
-        <Botao ctn="." classe={`${stl.botao} ${stl.borda} col-start-1 row-start-6`}/>
-        <Botao ctn="%" classe={`${stl.botao} ${stl.borda} col-start-3 row-start-6`}/>
+        <Botao click={(e) => handclick(e)} ctn="+" classe={`${stl.botao} ${stl.borda} col-start-2 row-start-2`}/>
+        <Botao click={(e) => handclick(e)} ctn="-" classe={`${stl.botao} ${stl.borda} col-start-3 row-start-2`}/>
+        <Botao click={(e) => handclick(e)} ctn="/" classe={`${stl.botao} ${stl.borda} col-start-4 row-start-3`}/>
+        <Botao click={(e) => handclick(e)} ctn="x" classe={`${stl.botao} ${stl.borda} col-start-4 row-start-4`}/>
+        <Botao click={(e) => handclick(e)} ctn="." classe={`${stl.botao} ${stl.borda} col-start-1 row-start-6`}/>
+        <Botao click={(e) => handclick(e)} ctn="%" classe={`${stl.botao} ${stl.borda} col-start-3 row-start-6`}/>
 
-        <Botao ctn="Del" classe={`${stl.botao} ${stl.borda} col-start-4 row-start-2`}/>
-        <Botao ctn="C"   classe={`${stl.botao} ${stl.borda} col-start-1 row-start-2`}/>
-        <Botao ctn="="   classe={`${stl.botao} ${stl.borda} col-start-4 row-start-5 row-end-7`}/>
+        <Botao click={apagar} ctn="Del" classe={`${stl.botao} ${stl.borda} col-start-4 row-start-2`}/>
+        <Botao click={limpar} ctn="C"   classe={`${stl.botao} ${stl.borda} col-start-1 row-start-2`}/>
+        <Botao click={calcular} ctn="="   classe={`${stl.botao} ${stl.borda} col-start-4 row-start-5 row-end-7`}/>
       </div>
     </div>
   )

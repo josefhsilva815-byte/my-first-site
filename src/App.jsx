@@ -16,13 +16,14 @@ function App() {
       border border-black
     `,
     botao: `
-      flex items-center justify-center rounded-lg
+      flex items-center justify-center rounded-lg w-16 min-h-16
     `,
     
     // Propriedade para testar estilos
     testStyle:(<o 
       className='
-      h-screen
+      min-h-
+      w-16
       '
     />)
   }
@@ -49,16 +50,16 @@ function App() {
       if(textContent) {
         // Retornaremos um valor baseado em um ifterário.
         // Se "preValue", parâmetro, possuir algum valor, retornamos esse valor mais(+) o conteúdo(textContent) do botão clicado. Porém, se "preValue" não possuir nenhum valor, retornamos apenas o conteúdo do botão clicado(textContent).
-        return preValue ? preValue + textContent : textContent
+        return preValue ? preValue + textContent : textContent;
       }
 
       // Se "value" possuir algum valor ele é "true", então vamos retornar algo.
       if(value) {
         // Verificar se o último caractere digitado é o sinal de igual, se for então vamos chamar a função "calcularComEval()" e retornar o próprio conteúdo do display.
-        if(value[value.length-1] === "=") {calculaComEval(); return preValue};
+        if(value[value.length-1] === "=") {calcularComEval(); return preValue};
         // Retornaremos um valor baseado em um ifterário.
         // Aqui verificamos se o último caractere, ou seja, o que acabamos de digitar, é uma operação("+","-","/","*") ou(||) um número(>= 0), seja qual for retornamos "value". Porém se for uma letra, por exemplo, ira ser "false" em ambas as verificações, retornando assim nada(""). 
-        return (["+","-","/","*"].includes(value[value.length-1]) || parseFloat(value[value.length-1]) >= 0) ? value : ""
+        return (["+","-","/","*","(",")"].includes(value[value.length-1]) || parseInt(value[value.length-1]) >= 0) ? value : preValue;
       }
     });
   }
@@ -74,8 +75,8 @@ function App() {
     setDisplayOut("") // Altera o conteúdo de "displayOut" para vazio(""). Para não ocorrer nenhum erro de cálculo.
   }
 
-  function calculaComEval() { // Resolve a expressão aritmética digitada.
-    if(["+","-","*","/"].includes(displayIn.slice(-1))) { // Verifica se o último caractere digitado na no "displayIn" é uma operação.
+  function calcularComEval() { // Resolve a expressão aritmética digitada.
+    if(["+","-","*","/","(",")"].includes(displayIn.slice(-1))) { // Verifica se o último caractere digitado na no "displayIn" é uma operação.
       // console.log(displayIn.slice(-1)) // Mostra no console o último caractere de "displayIn".
       setDisplayOut("") // Se o último caractere for uma operação o conteúdo de "displayOut" será apagado, ou seja, "displayOut" tem seu conteúdo alterado para vazio("").
     } else setDisplayOut(() => eval(displayIn)); // Se não for uma operação então "displayOut" tem seu conteúdo alterado para o resultado da expressão continda em "displaIn", calculada por "eval('1+1')", função que executa uma string como código JS.
@@ -94,16 +95,15 @@ function App() {
     <div className={stl.main}>
       <h1 className={stl.h1}>Calculadora</h1>
 
-      <div className="grid w-auto h-3/6 grid-cols-4 grid-rows-6 gap-1 ">
-        <Input 
-        value={displayIn}
+      <div className="grid w-auto min-h-fit grid-cols-4 grid-rows-6 gap-1 ">
+        <Input value={displayIn}
         input={(e) => handclick(e)} 
         type="text" 
         placeholder="Digite" 
         classe={`
           rounded-lg
           flex 
-          h-full 
+          h-16 
           text-left 
           p-2 
           col-start-1 
@@ -111,10 +111,8 @@ function App() {
           row-start-1 
           outline-none 
           ${stl.borda}
-        `}
-        />
-        <Output 
-        out={displayOut} 
+        `}/>
+        <Output out={displayOut} 
         classe={`
           opacity-40
           self-end 
@@ -126,8 +124,7 @@ function App() {
           col-start-1 
           col-end-5 
           row-start-1
-        `}
-        />
+        `}/>
 
         <Botao click={(e) => handclick(e)} ctn="1" classe={`${stl.botao} ${stl.borda}`}/>
         <Botao click={(e) => handclick(e)} ctn="2" classe={`${stl.botao} ${stl.borda}`}/>
@@ -149,7 +146,7 @@ function App() {
 
         <Botao click={apagar} ctn="Del" classe={`${stl.botao} ${stl.borda} col-start-4 row-start-2`}/>
         <Botao click={limpar} ctn="C"   classe={`${stl.botao} ${stl.borda} col-start-1 row-start-2`}/>
-        <Botao click={calculaComEval} ctn="="   classe={`${stl.botao} ${stl.borda} col-start-4 row-start-5 row-end-7`}/>
+        <Botao click={calcularComEval} ctn="="   classe={`${stl.botao} ${stl.borda} col-start-4 row-start-5 row-end-7`}/>
       </div>
     </div>
   )
